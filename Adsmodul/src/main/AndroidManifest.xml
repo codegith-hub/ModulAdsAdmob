@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <uses-permission android:name="android.permission.AD_ID" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:name=".MyApplication">
+        <meta-data android:name="com.startapp.sdk.APPLICATION_ID"
+            android:value="205666183" />
+        <meta-data
+            android:name="com.startapp.sdk.CHILD_DIRECTED"
+            android:value="true"/>
+        <meta-data
+            android:name="com.startapp.sdk.SPLASH_ENABLED"
+            android:value="false" />
+    </application>
+</manifest>

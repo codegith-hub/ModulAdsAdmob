@@ -1,0 +1,41 @@
+[versions]
+agp = "8.4.1"
+applovin = "12.5.0.1"
+facebook = "6.17.0.0"
+inappSdk = "5.0.0"
+junit = "4.13.2"
+junitVersion = "1.2.1"
+espressoCore = "3.6.1"
+appcompat = "1.7.0"
+material = "1.12.0"
+activity = "1.9.0"
+constraintlayout = "2.1.4"
+onesignal = "5.1.17"
+pangle = "6.0.0.8.0"
+playServicesAds = "23.2.0"
+unity = "4.12.0.0"
+lifecycleProcess = "2.8.3"
+userMessagingPlatform = "2.2.0"
+
+[libraries]
+applovin = { module = "com.google.ads.mediation:applovin", version.ref = "applovin" }
+facebook = { module = "com.google.ads.mediation:facebook", version.ref = "facebook" }
+inapp-sdk = { module = "com.startapp:inapp-sdk", version.ref = "inappSdk" }
+junit = { group = "junit", name = "junit", version.ref = "junit" }
+ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
+espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
+appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
+constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
+onesignal = { module = "com.onesignal:OneSignal", version.ref = "onesignal" }
+pangle = { module = "com.google.ads.mediation:pangle", version.ref = "pangle" }
+play-services-ads = { module = "com.google.android.gms:play-services-ads", version.ref = "playServicesAds" }
+unity = { module = "com.google.ads.mediation:unity", version.ref = "unity" }
+lifecycle-process = { group = "androidx.lifecycle", name = "lifecycle-process", version.ref = "lifecycleProcess" }
+user-messaging-platform = { module = "com.google.android.ump:user-messaging-platform", version.ref = "userMessagingPlatform" }
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "agp" }
+android-library = { id = "com.android.library", version.ref = "agp" }
+

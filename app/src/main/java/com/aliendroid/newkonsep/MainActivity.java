@@ -1,0 +1,50 @@
+package com.aliendroid.newkonsep;
+
+import static android.Manifest.permission.POST_NOTIFICATIONS;
+
+import android.content.pm.PackageManager;
+import android.os.Build;
+import android.os.Bundle;
+
+import androidx.activity.EdgeToEdge;
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+
+import com.adsmedia.adsmodul.AdsHelper;
+
+public class MainActivity extends AppCompatActivity {
+
+    @RequiresApi(api = Build.VERSION_CODES.TIRAMISU)
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        EdgeToEdge.enable(this);
+        setContentView(R.layout.activity_main);
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            return insets;
+        });
+        AdsHelper.initializeAds(this);
+        if (BuildConfig.DEBUG){
+            AdsHelper.debugMode(true);
+        }
+        AdsHelper.loadInterstitial(this, "ca-app-pub-3940256099942544/1033173712x",
+                "IMG_16_9_APP_INSTALL#YOUR_PLACEMENT_IDS");
+        AdsHelper.showBanner(this, findViewById(R.id.layAds),
+                "ca-app-pub-3940256099942544/6300978111x","IMG_16_9_APP_INSTALL#YOUR_PLACEMENT_IDS");
+        this.findViewById(R.id.tbShow).setOnClickListener(v -> {
+            AdsHelper.showInterstitial(MainActivity.this,"ca-app-pub-3940256099942544/1033173712x",
+                    "IMG_16_9_APP_INSTALL#YOUR_PLACEMENT_IDS",0);
+        });
+
+        if (ContextCompat.checkSelfPermission(this, POST_NOTIFICATIONS) == PackageManager.PERMISSION_DENIED) {
+            ActivityCompat.requestPermissions(this, new String[]{POST_NOTIFICATIONS}, 1);
+        }
+    }
+}
