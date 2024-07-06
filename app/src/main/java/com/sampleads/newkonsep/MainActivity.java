@@ -1,4 +1,4 @@
-package com.aliendroid.newkonsep;
+package com.sampleads.newkonsep;
 
 import static android.Manifest.permission.POST_NOTIFICATIONS;
 

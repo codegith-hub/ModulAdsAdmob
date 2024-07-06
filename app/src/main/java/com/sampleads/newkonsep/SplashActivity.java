@@ -1,4 +1,4 @@
-package com.aliendroid.newkonsep;
+package com.sampleads.newkonsep;
 
 import android.content.Intent;
 import android.os.Bundle;

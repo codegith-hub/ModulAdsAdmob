@@ -3,11 +3,11 @@ plugins {
 }
 
 android {
-    namespace = "com.aliendroid.newkonsep"
+    namespace = "com.sampleads.newkonsep"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.aliendroid.newkonsep"
+        applicationId = "com.sampleads.newkonsep"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
