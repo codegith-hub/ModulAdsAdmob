@@ -1,6 +1,8 @@
 package com.adsmedia.adsmodul;
 
 
+import static com.adsmedia.adsmodul.AdsHelper.keyopenApp;
+
 import android.annotation.SuppressLint;
 import android.app.Application;
 import android.content.Context;
@@ -21,7 +23,7 @@ public class MyApplication extends Application {
         context = this;
         openAds = new OpenAds(this);
         OneSignal.getDebug().setLogLevel(LogLevel.VERBOSE);
-        OneSignal.initWithContext(this, RestApi.keyopenApp);
+        OneSignal.initWithContext(this, keyopenApp);
         OneSignal.getNotifications().requestPermission(false, Continue.none());
     }
 }

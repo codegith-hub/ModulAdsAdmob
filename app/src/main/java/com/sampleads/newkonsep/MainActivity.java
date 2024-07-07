@@ -34,13 +34,13 @@ public class MainActivity extends AppCompatActivity {
         if (BuildConfig.DEBUG){
             AdsHelper.debugMode(true);
         }
-        AdsHelper.loadInterstitial(this, "ca-app-pub-3940256099942544/1033173712x",
-                "IMG_16_9_APP_INSTALL#YOUR_PLACEMENT_IDS");
+        AdsHelper.loadInterstitial(this,
+                "ca-app-pub-3940256099942544/1033173712");
         AdsHelper.showBanner(this, findViewById(R.id.layAds),
                 "ca-app-pub-3940256099942544/6300978111");
         this.findViewById(R.id.tbShow).setOnClickListener(v -> {
-            AdsHelper.showInterstitial(MainActivity.this,"ca-app-pub-3940256099942544/1033173712x",
-                    "IMG_16_9_APP_INSTALL#YOUR_PLACEMENT_IDS",0);
+            AdsHelper.showInterstitial(MainActivity.this,
+                    "ca-app-pub-3940256099942544/1033173712",0);
         });
 
         if (ContextCompat.checkSelfPermission(this, POST_NOTIFICATIONS) == PackageManager.PERMISSION_DENIED) {
