@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
         AdsHelper.loadInterstitial(this, "ca-app-pub-3940256099942544/1033173712x",
                 "IMG_16_9_APP_INSTALL#YOUR_PLACEMENT_IDS");
         AdsHelper.showBanner(this, findViewById(R.id.layAds),
-                "ca-app-pub-3940256099942544/6300978111x","IMG_16_9_APP_INSTALL#YOUR_PLACEMENT_IDS");
+                "ca-app-pub-3940256099942544/6300978111");
         this.findViewById(R.id.tbShow).setOnClickListener(v -> {
             AdsHelper.showInterstitial(MainActivity.this,"ca-app-pub-3940256099942544/1033173712x",
                     "IMG_16_9_APP_INSTALL#YOUR_PLACEMENT_IDS",0);

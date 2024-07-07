@@ -100,7 +100,7 @@ public class AdsHelper {
 
     public static AdView bannerAdmob;
 
-    public static void showBanner(Activity activity, RelativeLayout layout, String admobId, String metaId) {
+    public static void showBanner(Activity activity, RelativeLayout layout, String admobId) {
         AdRequest request = new AdRequest.Builder()
                 .build();
         bannerAdmob = new AdView(activity);
