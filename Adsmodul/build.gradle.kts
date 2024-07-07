@@ -8,7 +8,7 @@ android {
     compileSdk = 34
 
     defaultConfig {
-        minSdk = 24
+        minSdk = 21
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
@@ -31,7 +31,6 @@ android {
 }
 
 dependencies {
-    implementation (libs.inapp.sdk)
     implementation (libs.play.services.ads)
     implementation (libs.facebook)
     implementation (libs.applovin)
@@ -45,7 +44,7 @@ dependencies {
     implementation(libs.user.messaging.platform)
     implementation(libs.pangle)
     implementation (libs.onesignal)
-
+    implementation (libs.masterads)
 }
 android {
     publishing {

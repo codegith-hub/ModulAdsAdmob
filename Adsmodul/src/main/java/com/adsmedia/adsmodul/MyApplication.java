@@ -1,11 +1,12 @@
 package com.adsmedia.adsmodul;
 
-import static com.adsmedia.adsmodul.AdsHelper.Notification;
 
 import android.annotation.SuppressLint;
 import android.app.Application;
 import android.content.Context;
 
+import com.adsmedia.mastermodul.MasterAdsHelper;
+import com.adsmedia.mastermodul.RestApi;
 import com.onesignal.Continue;
 import com.onesignal.OneSignal;
 import com.onesignal.debug.LogLevel;
@@ -20,7 +21,7 @@ public class MyApplication extends Application {
         context = this;
         openAds = new OpenAds(this);
         OneSignal.getDebug().setLogLevel(LogLevel.VERBOSE);
-        OneSignal.initWithContext(this, Notification);
+        OneSignal.initWithContext(this, RestApi.keyopenApp);
         OneSignal.getNotifications().requestPermission(false, Continue.none());
     }
 }

@@ -3,7 +3,6 @@ package com.adsmedia.adsmodul;
 import static androidx.constraintlayout.motion.utils.Oscillator.TAG;
 
 import android.app.Activity;
-import android.provider.Settings;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Display;
@@ -11,13 +10,14 @@ import android.view.View;
 import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
+
+import com.adsmedia.mastermodul.MasterAdsHelper;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.LoadAdError;
 import com.google.android.gms.ads.MobileAds;
-import com.google.android.gms.ads.appopen.AppOpenAd;
 import com.google.android.gms.ads.initialization.AdapterStatus;
 import com.google.android.gms.ads.interstitial.InterstitialAd;
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
@@ -26,10 +26,6 @@ import com.google.android.ump.ConsentForm;
 import com.google.android.ump.ConsentInformation;
 import com.google.android.ump.ConsentRequestParameters;
 import com.google.android.ump.UserMessagingPlatform;
-import com.startapp.sdk.ads.banner.Banner;
-import com.startapp.sdk.ads.banner.BannerListener;
-import com.startapp.sdk.adsbase.StartAppAd;
-import com.startapp.sdk.adsbase.StartAppSDK;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -38,16 +34,14 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 
 public class AdsHelper {
-    public static String Notification = "f4020d13-3918-4c6a-899b-9585f30cdb84";
     public static ConsentInformation consentInformation;
-    public static ConsentDebugSettings debugSettings;
     public static ConsentRequestParameters params;
-    private static final AtomicBoolean isMobileAdsInitializeCalled = new AtomicBoolean(false);
-    public static void gdpr (Activity activity, Boolean childDirected){
-            params = new ConsentRequestParameters
-                    .Builder()
-                    .setTagForUnderAgeOfConsent(childDirected)
-                    .build();
+    public static boolean openads = true;
+    public static void gdpr(Activity activity, Boolean childDirected) {
+        params = new ConsentRequestParameters
+                .Builder()
+                .setTagForUnderAgeOfConsent(childDirected)
+                .build();
         consentInformation = UserMessagingPlatform.getConsentInformation(activity);
         consentInformation.requestConsentInfoUpdate(
                 activity,
@@ -75,7 +69,8 @@ public class AdsHelper {
             initializeAds(activity);
         }
     }
-    public static void initializeAds(Activity activity){
+
+    public static void initializeAds(Activity activity) {
         new Thread(
                 () ->
                         // Initialize the Google Mobile Ads SDK on a background thread.
@@ -95,14 +90,17 @@ public class AdsHelper {
 
                                 }))
                 .start();
+        MasterAdsHelper.initializeAds(activity, 0);
 
-           }
-    public static void debugMode(Boolean debug){
-        StartAppSDK.setTestAdsEnabled(debug);
     }
+
+    public static void debugMode(Boolean debug) {
+        MasterAdsHelper.debugMode(debug);
+    }
+
     public static AdView bannerAdmob;
 
-    public static void showBanner(Activity activity, RelativeLayout layout, String admobId, String metaId){
+    public static void showBanner(Activity activity, RelativeLayout layout, String admobId, String metaId) {
         AdRequest request = new AdRequest.Builder()
                 .build();
         bannerAdmob = new AdView(activity);
@@ -115,45 +113,27 @@ public class AdsHelper {
             @Override
             public void onAdLoaded() {
             }
+
             @Override
             public void onAdFailedToLoad(LoadAdError adError) {
-                        Banner startAppBanner = new Banner(activity, new BannerListener() {
-                            @Override
-                            public void onReceiveAd(View view) {
-                            }
-
-                            @Override
-                            public void onFailedToReceiveAd(View view) {
-                                layout.setVisibility(View.GONE);
-                            }
-
-                            @Override
-                            public void onImpression(View view) {
-                            }
-
-                            @Override
-                            public void onClick(View view) {
-                            }
-                        });
-                        RelativeLayout.LayoutParams bannerParameters =
-                                new RelativeLayout.LayoutParams(
-                                        RelativeLayout.LayoutParams.WRAP_CONTENT,
-                                        RelativeLayout.LayoutParams.WRAP_CONTENT);
-                        bannerParameters.addRule(RelativeLayout.CENTER_HORIZONTAL);
-                        layout.addView(startAppBanner, bannerParameters);
+              MasterAdsHelper.showBanner(activity, layout);
 
             }
+
             @Override
             public void onAdOpened() {
             }
+
             @Override
             public void onAdClicked() {
             }
+
             @Override
             public void onAdClosed() {
             }
         });
     }
+
     private static AdSize getAdSize(Activity activity) {
         Display display = activity.getWindowManager().getDefaultDisplay();
         DisplayMetrics outMetrics = new DisplayMetrics();
@@ -163,8 +143,10 @@ public class AdsHelper {
         int adWidth = (int) (widthPixels / density);
         return AdSize.getCurrentOrientationAnchoredAdaptiveBannerAdSize(activity, adWidth);
     }
+
     public static InterstitialAd interstitialAdmob;
-    public static void loadInterstitial(Activity activity, String admobId, String metaId){
+
+    public static void loadInterstitial(Activity activity, String admobId, String metaId) {
         AdRequest request = new AdRequest.Builder()
                 .build();
         InterstitialAd.load(activity, admobId, request,
@@ -183,20 +165,23 @@ public class AdsHelper {
                     }
                 });
     }
+
     public static int count = 0;
-    public static void showInterstitial(Activity activity, String admobId, String metaId, int interval){
-       if (count>=interval){
-           if (interstitialAdmob != null) {
-               interstitialAdmob.show(activity);
-           } else {
-               StartAppAd.showAd(activity);
-           }
-           loadInterstitial(activity, admobId, metaId);
-           count=0;
-       } else {
-           count++;
-       }
+
+    public static void showInterstitial(Activity activity, String admobId, String metaId, int interval) {
+        if (count >= interval) {
+            if (interstitialAdmob != null) {
+                interstitialAdmob.show(activity);
+            } else {
+               MasterAdsHelper.showInterstitial(activity);
+            }
+            loadInterstitial(activity, admobId, metaId);
+            count = 0;
+        } else {
+            count++;
+        }
     }
+
     public static final String md5(final String s) {
         try {
             // Create MD5 Hash
