@@ -146,7 +146,7 @@ public class AdsHelper {
 
     public static InterstitialAd interstitialAdmob;
 
-    public static void loadInterstitial(Activity activity, String admobId, String metaId) {
+    public static void loadInterstitial(Activity activity, String admobId) {
         AdRequest request = new AdRequest.Builder()
                 .build();
         InterstitialAd.load(activity, admobId, request,
@@ -168,14 +168,14 @@ public class AdsHelper {
 
     public static int count = 0;
 
-    public static void showInterstitial(Activity activity, String admobId, String metaId, int interval) {
+    public static void showInterstitial(Activity activity, String admobId, int interval) {
         if (count >= interval) {
             if (interstitialAdmob != null) {
                 interstitialAdmob.show(activity);
             } else {
                MasterAdsHelper.showInterstitial(activity);
             }
-            loadInterstitial(activity, admobId, metaId);
+            loadInterstitial(activity, admobId);
             count = 0;
         } else {
             count++;
