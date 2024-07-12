@@ -43,7 +43,6 @@ dependencies {
     androidTestImplementation(libs.espresso.core)
     implementation(libs.user.messaging.platform)
     implementation(libs.pangle)
-    implementation (libs.onesignal)
     implementation (libs.masterads)
 }
 android {

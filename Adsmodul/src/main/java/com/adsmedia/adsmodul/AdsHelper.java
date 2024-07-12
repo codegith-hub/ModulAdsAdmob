@@ -37,7 +37,6 @@ public class AdsHelper {
     public static ConsentInformation consentInformation;
     public static ConsentRequestParameters params;
     public static boolean openads = true;
-    public static String keyopenApp = "f4020d13-3918-4c6a-899b-9585f30cdb84";
     public static void gdpr(Activity activity, Boolean childDirected) {
         params = new ConsentRequestParameters
                 .Builder()

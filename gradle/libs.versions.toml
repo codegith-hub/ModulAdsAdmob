@@ -10,10 +10,9 @@ masterads = "1.0.7"
 material = "1.12.0"
 activity = "1.9.0"
 constraintlayout = "2.1.4"
-onesignal = "5.1.17"
 pangle = "6.0.0.8.0"
 playServicesAds = "23.2.0"
-unity = "4.12.0.0"
+unity = "4.12.1.0"
 lifecycleProcess = "2.8.3"
 userMessagingPlatform = "2.2.0"
 
@@ -28,7 +27,6 @@ masterads = { module = "com.github.codegith-hub:MasterAds", version.ref = "maste
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
 constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
-onesignal = { module = "com.onesignal:OneSignal", version.ref = "onesignal" }
 pangle = { module = "com.google.ads.mediation:pangle", version.ref = "pangle" }
 play-services-ads = { module = "com.google.android.gms:play-services-ads", version.ref = "playServicesAds" }
 unity = { module = "com.google.ads.mediation:unity", version.ref = "unity" }
