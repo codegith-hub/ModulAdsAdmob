@@ -37,7 +37,7 @@ public class AdsHelper {
     public static ConsentInformation consentInformation;
     public static ConsentRequestParameters params;
     public static boolean openads = true;
-    public static void gdpr(Activity activity, Boolean childDirected) {
+    public static void gdpr(Activity activity, Boolean childDirected, int keypos) {
         params = new ConsentRequestParameters
                 .Builder()
                 .setTagForUnderAgeOfConsent(childDirected)
@@ -55,7 +55,7 @@ public class AdsHelper {
                                 }
                                 // Consent has been gathered.
                                 if (consentInformation.canRequestAds()) {
-                                    initializeAds(activity);
+                                    initializeAds(activity, keypos);
                                 }
 
                             }
@@ -66,11 +66,11 @@ public class AdsHelper {
                     // Consent gathering failed.
                 });
         if (consentInformation.canRequestAds()) {
-            initializeAds(activity);
+            initializeAds(activity, keypos);
         }
     }
 
-    public static void initializeAds(Activity activity) {
+    public static void initializeAds(Activity activity, int keypos) {
         new Thread(
                 () ->
                         // Initialize the Google Mobile Ads SDK on a background thread.
@@ -90,7 +90,7 @@ public class AdsHelper {
 
                                 }))
                 .start();
-        MasterAdsHelper.initializeAds(activity, 0);
+        MasterAdsHelper.initializeAds(activity, keypos);
 
     }
 
