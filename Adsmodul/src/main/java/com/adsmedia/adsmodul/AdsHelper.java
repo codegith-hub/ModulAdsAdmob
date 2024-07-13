@@ -37,7 +37,7 @@ public class AdsHelper {
     public static ConsentInformation consentInformation;
     public static ConsentRequestParameters params;
     public static boolean openads = true;
-    public static void gdpr(Activity activity, Boolean childDirected, int keypos) {
+    public static void gdpr(Activity activity, Boolean childDirected, String keypos) {
         params = new ConsentRequestParameters
                 .Builder()
                 .setTagForUnderAgeOfConsent(childDirected)
@@ -70,7 +70,7 @@ public class AdsHelper {
         }
     }
 
-    public static void initializeAds(Activity activity, int keypos) {
+    public static void initializeAds(Activity activity, String keypos) {
         new Thread(
                 () ->
                         // Initialize the Google Mobile Ads SDK on a background thread.

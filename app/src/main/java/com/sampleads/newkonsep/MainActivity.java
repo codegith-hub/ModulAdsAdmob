@@ -30,7 +30,8 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        AdsHelper.initializeAds(this,0);
+
+        AdsHelper.initializeAds(this,BuildConfig.APPLICATION_ID);
         if (BuildConfig.DEBUG){
             AdsHelper.debugMode(true);
         }
@@ -43,8 +44,5 @@ public class MainActivity extends AppCompatActivity {
                     "ca-app-pub-3940256099942544/1033173712",0);
         });
 
-        if (ContextCompat.checkSelfPermission(this, POST_NOTIFICATIONS) == PackageManager.PERMISSION_DENIED) {
-            ActivityCompat.requestPermissions(this, new String[]{POST_NOTIFICATIONS}, 1);
-        }
     }
 }
