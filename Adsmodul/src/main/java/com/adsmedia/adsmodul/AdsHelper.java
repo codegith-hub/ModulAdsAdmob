@@ -37,6 +37,7 @@ public class AdsHelper {
     public static ConsentInformation consentInformation;
     public static ConsentRequestParameters params;
     public static boolean openads = true;
+    public static boolean directData = false;
     public static void gdpr(Activity activity, Boolean childDirected, String keypos) {
         params = new ConsentRequestParameters
                 .Builder()
@@ -112,12 +113,13 @@ public class AdsHelper {
         bannerAdmob.setAdListener(new AdListener() {
             @Override
             public void onAdLoaded() {
+                directData = true;
             }
 
             @Override
             public void onAdFailedToLoad(LoadAdError adError) {
               MasterAdsHelper.showBanner(activity, layout);
-
+                directData = true;
             }
 
             @Override
@@ -155,6 +157,7 @@ public class AdsHelper {
                     public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
                         interstitialAdmob = interstitialAd;
                         Log.i(TAG, "onAdLoaded");
+                        directData = true;
                     }
 
                     @Override
@@ -162,6 +165,7 @@ public class AdsHelper {
                         // Handle the error
                         Log.i(TAG, loadAdError.getMessage());
                         interstitialAdmob = null;
+                        directData = true;
                     }
                 });
     }

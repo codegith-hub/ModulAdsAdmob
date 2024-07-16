@@ -2,11 +2,12 @@
 agp = "8.4.1"
 applovin = "12.5.0.1"
 facebook = "6.17.0.0"
+gson = "2.10.1"
 junit = "4.13.2"
 junitVersion = "1.2.1"
 espressoCore = "3.6.1"
 appcompat = "1.7.0"
-masterads = "1.0.8"
+masterads = "1.0.10"
 material = "1.12.0"
 activity = "1.9.0"
 constraintlayout = "2.1.4"
@@ -14,11 +15,12 @@ pangle = "6.0.0.8.0"
 playServicesAds = "23.2.0"
 unity = "4.12.1.0"
 lifecycleProcess = "2.8.3"
-userMessagingPlatform = "2.2.0"
+userMessagingPlatform = "3.0.0"
 
 [libraries]
 applovin = { module = "com.google.ads.mediation:applovin", version.ref = "applovin" }
 facebook = { module = "com.google.ads.mediation:facebook", version.ref = "facebook" }
+gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }

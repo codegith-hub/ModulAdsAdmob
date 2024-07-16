@@ -44,6 +44,7 @@ dependencies {
     implementation(libs.user.messaging.platform)
     implementation(libs.pangle)
     implementation (libs.masterads)
+    implementation (libs.gson)
 }
 android {
     publishing {
