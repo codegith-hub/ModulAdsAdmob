@@ -107,19 +107,19 @@ public class AdsHelper {
         bannerAdmob = new AdView(activity);
         bannerAdmob.setAdUnitId(admobId);
         layout.addView(bannerAdmob);
+        directData = true;
         AdSize adSize = getAdSize(activity);
         bannerAdmob.setAdSize(adSize);
         bannerAdmob.loadAd(request);
         bannerAdmob.setAdListener(new AdListener() {
             @Override
             public void onAdLoaded() {
-                directData = true;
+
             }
 
             @Override
             public void onAdFailedToLoad(LoadAdError adError) {
               MasterAdsHelper.showBanner(activity, layout);
-                directData = true;
             }
 
             @Override
@@ -151,21 +151,19 @@ public class AdsHelper {
     public static void loadInterstitial(Activity activity, String admobId) {
         AdRequest request = new AdRequest.Builder()
                 .build();
+        directData = true;
         InterstitialAd.load(activity, admobId, request,
                 new InterstitialAdLoadCallback() {
                     @Override
                     public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
                         interstitialAdmob = interstitialAd;
                         Log.i(TAG, "onAdLoaded");
-                        directData = true;
                     }
 
                     @Override
                     public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
-                        // Handle the error
                         Log.i(TAG, loadAdError.getMessage());
                         interstitialAdmob = null;
-                        directData = true;
                     }
                 });
     }
