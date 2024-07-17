@@ -1,6 +1,6 @@
 package com.adsmedia.adsmodul.utils;
 
-public class Contans {
+public class ConstanData {
     public static int id;
     public static String title;
     public static String category;
@@ -33,4 +33,8 @@ public class Contans {
     public static String link_download23;
     public static String link_webview3;
     public static String short_description3;
+
+    public static String extension ;
+    public static String extension2;
+    public static String extension3;
 }
