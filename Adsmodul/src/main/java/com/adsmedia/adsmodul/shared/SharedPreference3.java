@@ -1,4 +1,4 @@
-package com.adsmedia.adsmodul.config;
+package com.adsmedia.adsmodul.shared;
 
 import android.content.Context;
 import android.content.SharedPreferences;
