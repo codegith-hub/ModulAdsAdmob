@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
-        AdsHelper.initializeAds(this,BuildConfig.APPLICATION_ID);
+        AdsHelper.initializeAds(this,BuildConfig.APPLICATION_ID,"");
         if (BuildConfig.DEBUG){
             AdsHelper.debugMode(true);
         }
