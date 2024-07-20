@@ -37,4 +37,13 @@ public class ConstanData {
     public static String extension ;
     public static String extension2;
     public static String extension3;
+
+    public static String category_name;
+    public static String link_image_category;
+
+    public static String category_name2;
+    public static String link_image_category2;
+
+    public static String category_name3;
+    public static String link_image_category3;
 }
