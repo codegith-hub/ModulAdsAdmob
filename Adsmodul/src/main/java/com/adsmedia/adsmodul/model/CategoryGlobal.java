@@ -8,7 +8,15 @@ public class CategoryGlobal {
         this.title = title;
     }
 
+    public String getTitle() {
+        return title;
+    }
+
     public String getCategory() {
         return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 }
