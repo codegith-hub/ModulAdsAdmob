@@ -166,6 +166,7 @@ public class AdsHelper {
                         interstitialAdmob = null;
                     }
                 });
+        MasterAdsHelper.loadInterstitial(activity);
     }
 
     public static int count = 0;
