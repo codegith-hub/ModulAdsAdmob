@@ -18,9 +18,13 @@ import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.LoadAdError;
 import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.OnUserEarnedRewardListener;
 import com.google.android.gms.ads.initialization.AdapterStatus;
 import com.google.android.gms.ads.interstitial.InterstitialAd;
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
+import com.google.android.gms.ads.rewarded.RewardItem;
+import com.google.android.gms.ads.rewarded.RewardedAd;
+import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback;
 import com.google.android.ump.ConsentDebugSettings;
 import com.google.android.ump.ConsentForm;
 import com.google.android.ump.ConsentInformation;
@@ -169,6 +173,29 @@ public class AdsHelper {
         MasterAdsHelper.loadInterstitial(activity);
     }
 
+    private static RewardedAd mRewardedAd;
+    public static boolean unlockreward = false;
+    public static void loadReward(Activity activity, String admobId) {
+        directData = true;
+        AdRequest adRequest2 = new AdRequest.Builder()
+                .build();
+        RewardedAd.load(activity, admobId,
+                adRequest2, new RewardedAdLoadCallback() {
+                    @Override
+                    public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                        mRewardedAd = null;
+                    }
+
+                    @Override
+                    public void onAdLoaded(@NonNull RewardedAd rewardedAd) {
+
+                        mRewardedAd = rewardedAd;
+
+                    }
+                });
+        MasterAdsHelper.loadReward(activity);
+    }
+
     public static int count = 0;
 
     public static void showInterstitial(Activity activity, String admobId, int interval) {
@@ -183,6 +210,22 @@ public class AdsHelper {
         } else {
             count++;
         }
+    }
+
+    public static void showReward(Activity activity, String admobId) {
+        if (mRewardedAd != null) {
+            Activity activityContext = activity;
+            mRewardedAd.show(activityContext, new OnUserEarnedRewardListener() {
+                @Override
+                public void onUserEarnedReward(@NonNull RewardItem rewardItem) {
+                    unlockreward = true;
+                }
+            });
+        } else {
+            MasterAdsHelper.showReward(activity);
+            unlockreward = true;
+        }
+        loadReward(activity, admobId);
     }
 
     public static final String md5(final String s) {

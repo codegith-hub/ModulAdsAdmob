@@ -8,12 +8,24 @@
     tools:context=".MainActivity">
 
 
-    <Button
-        android:id="@+id/tbShow"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:text="Button" />
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/tbShow"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="Inter" />
+
+        <Button
+            android:id="@+id/tbReward"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="Reward" />
+    </LinearLayout>
 
     <RelativeLayout
         android:id="@+id/layAds"
