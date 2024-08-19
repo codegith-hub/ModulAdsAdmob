@@ -9,4 +9,7 @@ public class AdsConfig {
     public static String Game_App_ID = "null";
     public static int Counter = 0 ;
     public static int Interval = 0;
+    public static int Coin_First = 0;
+    public static int Coin_Use = 0;
+    public static int Coin_Reward = 0;
 }
