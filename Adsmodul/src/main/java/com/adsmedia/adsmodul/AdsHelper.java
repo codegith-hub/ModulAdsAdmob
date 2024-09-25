@@ -59,18 +59,7 @@ import com.unity3d.ads.UnityAdsShowOptions;
 import com.unity3d.services.banners.BannerErrorInfo;
 import com.unity3d.services.banners.BannerView;
 import com.unity3d.services.banners.UnityBannerSize;
-import com.yandex.mobile.ads.banner.BannerAdEventListener;
-import com.yandex.mobile.ads.banner.BannerAdSize;
-import com.yandex.mobile.ads.banner.BannerAdView;
-import com.yandex.mobile.ads.common.AdRequestConfiguration;
-import com.yandex.mobile.ads.common.AdRequestError;
-import com.yandex.mobile.ads.common.ImpressionData;
-import com.yandex.mobile.ads.interstitial.InterstitialAdLoadListener;
-import com.yandex.mobile.ads.interstitial.InterstitialAdLoader;
-import com.yandex.mobile.ads.rewarded.Reward;
-import com.yandex.mobile.ads.rewarded.RewardedAdEventListener;
-import com.yandex.mobile.ads.rewarded.RewardedAdLoadListener;
-import com.yandex.mobile.ads.rewarded.RewardedAdLoader;
+
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -186,9 +175,6 @@ public class AdsHelper {
                 };
                 UnityAds.initialize(activity, gameAppId, listener);
                 break;
-            case "YANDEX":
-                MobileAds.initialize(activity);
-                break;
             case "PANGLE":
                 PAGConfig pAGInitConfig = buildNewConfig(activity, gameAppId);
                 PAGSdk.init(activity, pAGInitConfig, new PAGSdk.PAGInitCallback() {
@@ -214,7 +200,6 @@ public class AdsHelper {
     public static AdView bannerAdmob;
     public static com.facebook.ads.AdView bannerFan;
     public static BannerView unityBanner;
-    public static BannerAdView banneryandex;
     public static PAGBannerAd bannerAdPangle;
 
     public static void showBanner(Activity activity, RelativeLayout layout, String bannerID, String selectAds) {
@@ -302,49 +287,6 @@ public class AdsHelper {
                     }
                 });
                 break;
-            case "YANDEX":
-                banneryandex = new BannerAdView(activity);
-                banneryandex.setAdSize(getAdSizeYandex(activity));
-                banneryandex.setAdUnitId(bannerID);
-                banneryandex.setBannerAdEventListener(new BannerAdEventListener() {
-                    @Override
-                    public void onAdLoaded() {
-
-                    }
-
-                    @Override
-                    public void onAdFailedToLoad(@NonNull AdRequestError adRequestError) {
-                        if (banneryandex != null) {
-                            banneryandex.destroy();
-                        }
-                        MasterAdsHelper.showBanner(activity, layout);
-                    }
-
-                    @Override
-                    public void onAdClicked() {
-
-                    }
-
-                    @Override
-                    public void onLeftApplication() {
-
-                    }
-
-                    @Override
-                    public void onReturnedToApplication() {
-
-                    }
-
-                    @Override
-                    public void onImpression(@Nullable ImpressionData impressionData) {
-
-                    }
-                });
-                com.yandex.mobile.ads.common.AdRequest adRequest = new
-                        com.yandex.mobile.ads.common.AdRequest.Builder().setAge("14")
-                        .build();
-                banneryandex.loadAd(adRequest);
-                break;
             case "PANGLE":
                 PAGBannerSize bannerSize = PAGBannerSize.BANNER_W_320_H_50;
                 PAGBannerRequest bannerRequest = new PAGBannerRequest(bannerSize);
@@ -372,17 +314,6 @@ public class AdsHelper {
 
     }
 
-    @NonNull
-    private static BannerAdSize getAdSizeYandex(Activity activity) {
-        Display display = activity.getWindowManager().getDefaultDisplay();
-        DisplayMetrics outMetrics = new DisplayMetrics();
-        display.getMetrics(outMetrics);
-        float widthPixels = outMetrics.widthPixels;
-        float density = outMetrics.density;
-        int adWidth = (int) (widthPixels / density);
-        return BannerAdSize.stickySize(activity, adWidth);
-    }
-
     private static AdSize getAdSize(Activity activity) {
         Display display = activity.getWindowManager().getDefaultDisplay();
         DisplayMetrics outMetrics = new DisplayMetrics();
@@ -395,8 +326,6 @@ public class AdsHelper {
 
     public static InterstitialAd interstitialAdmob;
     public static com.facebook.ads.InterstitialAd interstitialFAN;
-    public static com.yandex.mobile.ads.interstitial.InterstitialAd interstitialYandex = null;
-    public static InterstitialAdLoader interstitialAdLoaderYandex = null;
     public static PAGInterstitialAd interstitialAdPangle;
 
     public static void loadInterstitial(Activity activity, String admobId, String selectAds) {
@@ -442,26 +371,6 @@ public class AdsHelper {
                     e.printStackTrace();
                 }
                 break;
-            case "YANDEX":
-                interstitialAdLoaderYandex = new InterstitialAdLoader(activity);
-                interstitialAdLoaderYandex.setAdLoadListener(new InterstitialAdLoadListener() {
-                    @Override
-                    public void onAdLoaded(@NonNull com.yandex.mobile.ads.interstitial.InterstitialAd interstitialAd) {
-                        interstitialYandex = interstitialAd;
-                    }
-
-                    @Override
-                    public void onAdFailedToLoad(@NonNull final AdRequestError adRequestError) {
-                        // Ad failed to load with AdRequestError.
-                        // Attempting to load a new ad from the onAdFailedToLoad() method is strongly discouraged.
-                    }
-                });
-                if (interstitialAdLoaderYandex != null) {
-                    final AdRequestConfiguration adRequestConfiguration =
-                            new AdRequestConfiguration.Builder(admobId).setAge("14").build();
-                    interstitialAdLoaderYandex.loadAd(adRequestConfiguration);
-                }
-                break;
             case "PANGLE":
                 try {
                     PAGInterstitialRequest request2 = new PAGInterstitialRequest();
@@ -488,8 +397,6 @@ public class AdsHelper {
     private static RewardedInterstitialAd rewardedInterstitialAd;
     private static RewardedAd mRewardedAd;
     public static boolean unlockreward = false;
-    public static com.yandex.mobile.ads.rewarded.RewardedAd rewardedAdYandex = null;
-    public static RewardedAdLoader rewardedAdLoaderYandex = null;
     public static PAGRewardedRequest request;
     public static PAGRewardedAd rewardedAd;
 
@@ -572,27 +479,6 @@ public class AdsHelper {
                     e.printStackTrace();
                 }
                 break;
-            case "YANDEX":
-                rewardedAdLoaderYandex = new RewardedAdLoader(activity);
-                rewardedAdLoaderYandex.setAdLoadListener(new RewardedAdLoadListener() {
-                    @Override
-                    public void onAdLoaded(@NonNull com.yandex.mobile.ads.rewarded.RewardedAd rewardedAd) {
-                        rewardedAdYandex = rewardedAd;
-                    }
-
-
-                    @Override
-                    public void onAdFailedToLoad(@NonNull final AdRequestError adRequestError) {
-                        // Ad failed to load with AdRequestError.
-                        // Attempting to load a new ad from the onAdFailedToLoad() method is strongly discouraged.
-                    }
-                });
-                if (rewardedAdLoaderYandex != null) {
-                    final AdRequestConfiguration adRequestConfiguration =
-                            new AdRequestConfiguration.Builder(rewardId).build();
-                    rewardedAdLoaderYandex.loadAd(adRequestConfiguration);
-                }
-                break;
             case "PANGLE":
                 request = new PAGRewardedRequest();
                 PAGRewardedAd.loadAd(rewardId,
@@ -671,17 +557,6 @@ public class AdsHelper {
                             }
                         };
                         UnityAds.show(activity, admobId, new UnityAdsShowOptions(), showListener);
-                        countInterstitial++;
-                    }
-                    break;
-                case "YANDEX":
-                    if (countInterstitial >= 1) {
-                        MasterAdsHelper.showInterstitial(activity);
-                        countInterstitial = 0;
-                    } else {
-                        if (interstitialYandex != null) {
-                            interstitialYandex.show(activity);
-                        }
                         countInterstitial++;
                     }
                     break;
@@ -774,50 +649,6 @@ public class AdsHelper {
                     };
                     UnityAds.show(activity, admobId, new UnityAdsShowOptions(), showListener);
                     counterReward++;
-                }
-                loadReward(activity, admobId, selectAds);
-                break;
-            case "YANDEX":
-                if (counterReward >= 1) {
-                    MasterAdsHelper.showReward(activity);
-                    unlockreward = true;
-                    counterReward = 0;
-                } else {
-                    if (rewardedAdYandex != null) {
-                        rewardedAdYandex.setAdEventListener(new RewardedAdEventListener() {
-                            @Override
-                            public void onRewarded(@NonNull Reward reward) {
-                                unlockreward = true;
-                            }
-
-                            @Override
-                            public void onAdFailedToShow(@NonNull com.yandex.mobile.ads.common.AdError adError) {
-
-                            }
-
-                            @Override
-                            public void onAdShown() {
-                                // Called when an ad is shown.
-                            }
-
-                            @Override
-                            public void onAdDismissed() {
-                            }
-
-                            @Override
-                            public void onAdClicked() {
-                                // Called when a click is recorded for an ad.
-                            }
-
-                            @Override
-                            public void onAdImpression(@Nullable final ImpressionData impressionData) {
-                                // Called when an impression is recorded for an ad.
-                            }
-
-                        });
-                        rewardedAdYandex.show(activity);
-                        counterReward++;
-                    }
                 }
                 loadReward(activity, admobId, selectAds);
                 break;

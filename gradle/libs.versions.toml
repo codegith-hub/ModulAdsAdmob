@@ -13,7 +13,6 @@ masterads = "1.0.13"
 material = "1.12.0"
 activity = "1.9.0"
 constraintlayout = "2.1.4"
-mobileads = "7.5.0"
 pangle = "6.2.0.6.0"
 playServicesAds = "23.3.0"
 playServicesAdsIdentifier = "18.1.0"
@@ -36,7 +35,6 @@ masterads = { module = "com.github.codegith-hub:MasterAds", version.ref = "maste
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
 constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
-mobileads = { module = "com.yandex.android:mobileads", version.ref = "mobileads" }
 pangle = { module = "com.google.ads.mediation:pangle", version.ref = "pangle" }
 play-services-ads = { module = "com.google.android.gms:play-services-ads", version.ref = "playServicesAds" }
 play-services-ads-identifier = { module = "com.google.android.gms:play-services-ads-identifier", version.ref = "playServicesAdsIdentifier" }

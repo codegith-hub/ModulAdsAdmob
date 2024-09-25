@@ -37,17 +37,17 @@ public class MainActivity extends AppCompatActivity {
             AdsHelper.debugMode(true);
         }
         AdsHelper.loadInterstitial(this,
-                "ca-app-pub-3940256099942544/1033173712",SelectAds);
+                "ca-app-pub-3940256099942544/1033173712x",SelectAds);
         AdsHelper.showBanner(this, findViewById(R.id.layAds),
-                "ca-app-pub-3940256099942544/9214589741",SelectAds);
-        AdsHelper.loadReward(this,"ca-app-pub-3940256099942544/5224354917", SelectAds);
+                "ca-app-pub-3940256099942544/9214589741x",SelectAds);
+        AdsHelper.loadReward(this,"ca-app-pub-3940256099942544/5224354917x", SelectAds);
         this.findViewById(R.id.tbShow).setOnClickListener(v -> {
             AdsHelper.showInterstitial(MainActivity.this,
-                    "ca-app-pub-3940256099942544/1033173712",0,SelectAds);
+                    "ca-app-pub-3940256099942544/1033173712x",0,SelectAds);
         });
 
         this.findViewById(R.id.tbReward).setOnClickListener(v -> {
-            AdsHelper.showReward(MainActivity.this,"ca-app-pub-3940256099942544/5224354917",SelectAds);
+            AdsHelper.showReward(MainActivity.this,"ca-app-pub-3940256099942544/5224354917x",SelectAds);
         });
 
     }

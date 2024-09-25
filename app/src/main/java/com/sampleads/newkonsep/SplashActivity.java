@@ -25,10 +25,6 @@ public class SplashActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        AdsHelper.initializeAds(this,BuildConfig.APPLICATION_ID,"",SelectAds);
-        if (BuildConfig.DEBUG){
-            AdsHelper.debugMode(true);
-        }
         OpenAds.LoadOpenAds("ca-app-pub-3940256099942544/9257395921");
         OpenAds.AppOpenAdManager.showAdIfAvailable(SplashActivity.this, new OpenAds.OnShowAdCompleteListener() {
             @Override

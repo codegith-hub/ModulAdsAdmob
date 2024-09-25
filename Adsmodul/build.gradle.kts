@@ -47,7 +47,6 @@ dependencies {
     implementation (libs.annotation)
     implementation (libs.audience.network.sdk)
     implementation (libs.unity.ads)
-    implementation (libs.mobileads)
     implementation (libs.ads.sdk)
     implementation (libs.play.services.ads.identifier)
 }
