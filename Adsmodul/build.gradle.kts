@@ -33,7 +33,6 @@ android {
 dependencies {
     implementation (libs.play.services.ads)
     implementation (libs.facebook)
-    implementation (libs.applovin)
     implementation (libs.unity)
     implementation(libs.appcompat)
     implementation(libs.material)
@@ -45,6 +44,12 @@ dependencies {
     implementation(libs.pangle)
     implementation (libs.masterads)
     implementation (libs.gson)
+    implementation (libs.annotation)
+    implementation (libs.audience.network.sdk)
+    implementation (libs.unity.ads)
+    implementation (libs.mobileads)
+    implementation (libs.ads.sdk)
+    implementation (libs.play.services.ads.identifier)
 }
 android {
     publishing {

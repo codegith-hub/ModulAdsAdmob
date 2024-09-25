@@ -31,5 +31,5 @@
 LineNumberTable, *Annotation*, EnclosingMethod
 -dontwarn android.webkit.JavascriptInterface
 -dontwarn com.startapp.**
-
+-keep class com.bytedance.sdk.** { *; }
 -dontwarn org.jetbrains.annotations.**

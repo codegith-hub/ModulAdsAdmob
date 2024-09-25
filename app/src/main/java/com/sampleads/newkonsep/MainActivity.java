@@ -19,7 +19,7 @@ import androidx.core.view.WindowInsetsCompat;
 import com.adsmedia.adsmodul.AdsHelper;
 
 public class MainActivity extends AppCompatActivity {
-
+    String SelectAds = "ADMOB";
     @RequiresApi(api = Build.VERSION_CODES.TIRAMISU)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,22 +32,22 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
-        AdsHelper.initializeAds(this,BuildConfig.APPLICATION_ID,"");
+        AdsHelper.initializeAds(this,BuildConfig.APPLICATION_ID,"8025677", SelectAds);
         if (BuildConfig.DEBUG){
             AdsHelper.debugMode(true);
         }
         AdsHelper.loadInterstitial(this,
-                "ca-app-pub-3940256099942544/1033173712");
+                "ca-app-pub-3940256099942544/1033173712",SelectAds);
         AdsHelper.showBanner(this, findViewById(R.id.layAds),
-                "ca-app-pub-3940256099942544/6300978111");
-        AdsHelper.loadReward(this,"ca-app-pub-3940256099942544/5224354917x");
+                "ca-app-pub-3940256099942544/9214589741",SelectAds);
+        AdsHelper.loadReward(this,"ca-app-pub-3940256099942544/5224354917", SelectAds);
         this.findViewById(R.id.tbShow).setOnClickListener(v -> {
             AdsHelper.showInterstitial(MainActivity.this,
-                    "ca-app-pub-3940256099942544/1033173712",0);
+                    "ca-app-pub-3940256099942544/1033173712",0,SelectAds);
         });
 
         this.findViewById(R.id.tbReward).setOnClickListener(v -> {
-            AdsHelper.showReward(MainActivity.this,"ca-app-pub-3940256099942544/5224354917x");
+            AdsHelper.showReward(MainActivity.this,"ca-app-pub-3940256099942544/5224354917",SelectAds);
         });
 
     }

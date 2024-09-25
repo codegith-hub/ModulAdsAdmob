@@ -14,7 +14,7 @@ import com.adsmedia.adsmodul.AdsHelper;
 import com.adsmedia.adsmodul.OpenAds;
 
 public class SplashActivity extends AppCompatActivity {
-
+    String SelectAds = "ADMOB";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,7 +25,7 @@ public class SplashActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        AdsHelper.initializeAds(this,BuildConfig.APPLICATION_ID,"");
+        AdsHelper.initializeAds(this,BuildConfig.APPLICATION_ID,"",SelectAds);
         if (BuildConfig.DEBUG){
             AdsHelper.debugMode(true);
         }
